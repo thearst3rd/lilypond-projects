@@ -22,6 +22,7 @@ global =
 	\compressFullBarRests
 	
 	\set Score.markFormatter = #format-mark-circle-numbers
+	\override TrillSpanner.to-barline = ##t
 }
 
 \layout
@@ -86,14 +87,14 @@ playerOneNotes =
 \relative c,
 {
 	\global
-	\tuplet 3/2 { f8\p-"Wooden sticks" f f } f4 f f8 f f4 | % 1
+	\tuplet 3/2 { f8\p^"Wooden sticks" f f } f4 f f8 f f4 | % 1
 	\override Staff.MeasureCounter.count-from = #2
 	\startMeasureCount
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 2
-	\tuplet 3/2 { f8\< f f } f4 f f8 f f4 | % 3
-	\tuplet 3/2 { f8\> f f } f4 f f8 f f4 | % 4
-	\tuplet 3/2 { f8\! f f } f4 f f8 f f4 | % 5
-	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 6
+	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 3
+	\tuplet 3/2 { f8\< f f } f4 f f8 f f4 | % 4
+	\tuplet 3/2 { f8\> f f } f4 f f8 f f4 | % 5
+	\tuplet 3/2 { f8\! f f } f4 f f8 f f4 | % 6
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 7
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 8
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 9
@@ -101,7 +102,7 @@ playerOneNotes =
 	\tuplet 3/2 { f8\cresc f f } f4 f f8 f f4 | % 11
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 12
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 13
-	\tuplet 3/2 { f8\mp\dim f f } f4 f f8 f f4 | % 14
+	\tuplet 3/2 { f8\mf\dim f f } f4 f f8 f f4 | % 14
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 15
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 16
 	
@@ -138,27 +139,34 @@ playerOneNotes =
 	
 	R1 * 5/4 * 17 | % 40-56
 	
-	r2.-"Felt sticks" es'2\<\startTrillSpan | % 57
-	
-	%% 3 %%
-	\mark \default
-	
-	f,2.\! f2 | % 58
-	f2. f2\<\startTrillSpan | % 59
-	es'8->\!\stopTrillSpan r r4 r r2 | % 60
+	<<
+		{
+			r2.^"Felt sticks" es'2\<\startTrillSpan | % 57
+			
+			%% 3 %%
+			\mark \default
+			
+			f,2.\! f2 | % 58
+			f2. f2\<\startTrillSpan | % 59
+			es'8->\!\stopTrillSpan r r4 r r2 | % 60
+		}
+		{
+			s2. s2\startTrillSpan | s2. s2 | s2 s4\stopTrillSpan s2\startTrillSpan | s\stopTrillSpan
+		}
+	>>
 	r2. as,2\<\startTrillSpan | % 61
 	f8->\!\stopTrillSpan r r4 r as2\<\startTrillSpan | % 62
 	f8->\!\stopTrillSpan r r4 r as2\<\startTrillSpan | % 63
 	f8->\!\stopTrillSpan r r4 r r2 | % 64
-	r2. f2\startTrillSpan | % 65
-	es'4->\!\stopTrillSpan r r r2 | % 66
+	r2. f2\<\startTrillSpan | % 65
+	as4->\!\stopTrillSpan r r r2 | % 66
 	R1 * 5/4 | % 67
 	
 	%% 4 %%
 	\mark \default
 	
 	R1 * 5/4 * 12 | % 68-79
-	es2.:16\f es2: | % 80
+	es'2.:16\f es2: | % 80
 	es4 es es es es | % 81
 	R1 * 5/4 | % 82
 	r4 es es es es | % 83
@@ -166,7 +174,8 @@ playerOneNotes =
 	%% 5 %%
 	\mark \default
 	
-	R1 * 5/4 * 11^\markup { \concat { A \flat } to \concat { A \natural } } | % 84-94
+	R1 * 5/4 * 11^\markup { \concat { B \flat } to \concat { B \natural } } | % 84-94
+	\bar "||"
 	\time 5/2
 	R1 * 5/2^\markup \fermata | % 95
 	
@@ -184,6 +193,7 @@ playerOneNotes =
 	\tuplet 3/2 { a8 a a } a4 r2 r a4 a a8 a a4 | % 107
 	\tuplet 3/2 { a8 a a } a4 r2 r a4 a a8 a a4\! | % 108
 	R1 * 5/2 | % 109
+	\bar "||"
 	\time 5/4
 	\tuplet 3/2 { f8\fff f f } f4 f f8 f f4 | % 110
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 111
@@ -218,7 +228,7 @@ playerOneNotes =
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 134
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 135
 	\stopMeasureCount
-	f->^\markup { \concat { A \natural } to \concat { A \flat } } r r r2 | % 136
+	f->^\markup { \concat { B \natural } to \concat { B \flat } } r r r2 | % 136
 	R1 * 5/4 * 9 | % 137-145
 	
 	%% 9 %%
@@ -230,13 +240,14 @@ playerOneNotes =
 	\mark \default
 	
 	R1 * 5/4 | % 159
-	r2. as2\<\startTrillSpan | % 160
+	r2. \once \override Hairpin.minimum-length = #4 as2\f\<\startTrillSpan | % 160
 	R1 * 5/4\!\stopTrillSpan | % 161
 	r2. es'2\<\startTrillSpan | % 162
 	f,8->\!\stopTrillSpan r r4 r es'2\<\startTrillSpan | % 163
-	f,8->\!\stopTrillSpan r r4 r es'2\<\startTrillSpan | % 164
+	f,8->\!\stopTrillSpan r r4 r es'2\<^\startTrillSpan | % 164
 	f,2.\!\startTrillSpan f2 | % 165
 	f2. f8->\stopTrillSpan r r4 | % 166
+	\bar "||"
 	\time 5/2
 	f1.\ffff\startTrillSpan f1 | % 167
 	f1. r2\stopTrillSpan r | % 168
@@ -245,6 +256,7 @@ playerOneNotes =
 	%% 11 %%
 	\mark \default
 	
+	\bar "||"
 	\time 3/4
 	f2.\p\startTrillSpan | % 172
 	f | % 173
@@ -302,9 +314,16 @@ playerTwoNotes =
 	g2. r2\stopTrillSpan | % 61
 	bes2.->\startTrillSpan r2\stopTrillSpan | % 62
 	bes2.->\startTrillSpan r2\stopTrillSpan | % 63
-	bes2.->\startTrillSpan bes2 | % 64
-	bes2.-> bes2\<\startTrillSpan | % 65
-	des4->\!\stopTrillSpan r r r2 | % 66
+	<<
+		{
+			bes2.-> bes2 | % 64
+			bes2.-> bes2\< | % 65
+			des4->\! r r r2 | % 66
+		}
+		{
+			s2.\startTrillSpan s2 | s2 s4\stopTrillSpan s2\startTrillSpan | s\stopTrillSpan
+		}
+	>>
 	R1 * 5/4 | % 67
 	
 	%% 4 %%
@@ -316,7 +335,7 @@ playerTwoNotes =
 	r4 g g g g | % 79
 	R1 * 5/4 * 2 | % 80-81
 	g2.: g2: | % 82
-	R1 * 5/4_\markup { G to \concat { F \sharp } } | % 83
+	R1 * 5/4_\markup { A to \concat { G \sharp } } | % 83
 	
 	%% 5 %%
 	
@@ -336,7 +355,7 @@ playerTwoNotes =
 	
 	%% 7 %%
 	
-	R1 * 5/2 * 6\!\stopTrillSpan_\markup { \concat { F \sharp } to \concat { F \natural } } | % 104-109
+	R1 * 5/2 * 6\!\stopTrillSpan_\markup { \concat { G \sharp } to \concat { G \natural } } | % 104-109
 	\time 5/4
 	\tuplet 3/2 { f?8\fff f f } f4 f f8 f f4 | % 110
 	\tuplet 3/2 { f8 f f } f4 f f8 f f4 | % 111
@@ -347,7 +366,7 @@ playerTwoNotes =
 	%% 8 %%
 	
 	f4->\!\stopTrillSpan r r r2 | % 134
-	r2. f2\f\<\startTrillSpan | % 135
+	r2. f2\<\startTrillSpan | % 135
 	\tuplet 3/2 { f8->\f\stopTrillSpan f f } f4 f f8 f f4 | % 136
 	\override Staff.MeasureCounter.count-from = #2
 	\startMeasureCount
@@ -415,14 +434,14 @@ playerTwoNotes =
 {
 	\new PianoStaff
 	<<
-		\new Staff \with { instrumentName = \markup \center-column { \concat { E \flat } \concat { A \flat } F } }
+		\new Staff \with { instrumentName = \markup \center-column { F \concat { B \flat } G } }
 		<<
-			\playerOneNotes
+			\transpose c d \playerOneNotes
 			\forcedBreaks
 		>>
-		\new Staff \with { instrumentName = \markup \center-column { \concat { D \flat } \concat { B \flat } G } }
+		\new Staff \with { instrumentName = \markup \center-column { \concat { E \flat } C A } }
 		<<
-			\playerTwoNotes
+			\transpose c d \playerTwoNotes
 		>>
 	>>
 }
